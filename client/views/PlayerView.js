@@ -6,10 +6,18 @@ var PlayerView = Backbone.View.extend({
   el: '<audio controls autoplay />',
 
   initialize: function() {
-    this.$el.on('ended', function() {
+    /*this.$el.on('ended', function() {
       //need to dequeue the song 
       this.dequeue();
-    });
+    });*/
+  },
+  
+  events: {
+    'ended': 'songEnded'     // when we receive 'ended', run method songEnded
+  },
+
+  songEnded: function() {    
+    this.model.ended();
   },
 
   setSong: function(song) {

@@ -5,29 +5,37 @@ var SongQueueCollection = Backbone.Collection.extend({
 
   initialize: function() {
     this.on('add', function() {
-      console.log('addTriggered');
       if (this.length === 1) {
         this.playFirst();        
+      } else {
+        return;
       }
     }, this);
 
     this.on('ended', function() {
-      console.log('ended');
       this.shift();
       if (this.length) {
         this.playFirst();
+      } else {
+        return;
       }
     }, this);
 
     this.on('dequeue', function(song) {
-      console.log('dequeue');
+      this.shift();
+      //this.playFirst(); //play when we remove? ....doesn't work
+    }, this);
+
+    this.on('removeSong', function(song) {
       this.remove(song);
+      this.playFirst(); // error: playing when removing last song (fixed with if statement on line 36)
     }, this);
   },
 
   playFirst: function() { 
-    console.log('playFirst');
-    this.models[0].play();
+    if (this.length) {
+      this.at(0).play(); 
+    }                   // trying at instead of this.models[0]
     //play song at top of queue
   },
 
