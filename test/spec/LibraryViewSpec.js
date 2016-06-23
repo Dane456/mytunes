@@ -15,7 +15,7 @@ describe('LibraryView', function() {
       }
     ];
 
-    fakeSongs = new Songs(fakeSongData);
+    fakeSongs = new SongsCollection(fakeSongData);
   });
 
   it('should render its subviews when you render it', function() {

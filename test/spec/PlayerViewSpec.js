@@ -3,7 +3,7 @@ describe('PlayerView', function() {
 
   beforeEach(function() {
 
-    library = new Songs([
+    library = new SongsCollection([
       {
         url: 'mp3s/08 4 Page Letter.mp3',
         title: '4 Page Letter',
@@ -31,7 +31,7 @@ describe('PlayerView', function() {
     expect(appView.playerView.model).to.equal(library.at(0));
   });
 
-  xit('dequeues a song when finished playing & plays the next song', function() {
+  it('dequeues a song when finished playing & plays the next song', function() {
     var firstSong = library.at(0);
     var secondSong = library.at(1);
     var thirdSong = library.at(2);
@@ -42,12 +42,20 @@ describe('PlayerView', function() {
     songQueue.add(thirdSong);
     // play the first song
     songQueue.playFirst();
+    // console.log('firstSong: ', JSON.stringify(firstSong));
+    // console.log('appView.playerView.model: ', JSON.stringify(appView.playerView.model));
     expect(appView.playerView.model).to.equal(firstSong);
-    // Simulate the end of the first song
+    // Simulate the end of the first songs
+    //debugger;
     $(appView.playerView.el).trigger('ended');
+    // console.log(songQueue);
+    // console.log('secondSong: ', JSON.stringify(secondSong));
+    // console.log('appView.playerView.model: ', JSON.stringify(appView.playerView.model));
     expect(appView.playerView.model).to.equal(secondSong);
     // Simulate the end of the second song
     $(appView.playerView.el).trigger('ended');
+    // console.log('thirdSong: ', JSON.stringify(thirdSong));
+    // console.log('appView.playerView.model: ', JSON.stringify(appView.playerView.model));
     expect(appView.playerView.model).to.equal(thirdSong);
   });
 
