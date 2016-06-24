@@ -3,19 +3,22 @@
   <body>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
 
     <script src="data/data.js"></script>
+    <script src="env/config.js"></script>
 
     <script src="models/SongModel.js"></script>
     <script src="collections/SongsCollection.js"></script>
     <script src="collections/SongQueueCollection.js"></script>
     <script src="models/AppModel.js"></script>
 
-    <script src="views/SongQueueView.js"></script>   <!-- lmao we never added these scripts-->
-    <script src="views/SongQueueEntryView.js"></script> <!-- lolol major source of errors :p -->
+    <script src="views/SearchView.js"></script>  
+    <script src="views/SongQueueView.js"></script>   
+    <script src="views/SongQueueEntryView.js"></script> 
 
     <script src="views/PlayerView.js"></script>
     <script src="views/LibraryView.js"></script>
@@ -23,9 +26,10 @@
     <script src="views/AppView.js"></script>
 
     <script>
-      $(function() {
+      $(document).ready(function() {
+
         // set up model objects
-        var library = new SongsCollection(songData);
+        var library = new SongsCollection();
         var app = new AppModel({library: library});
 
         // build a view for the top level of the whole app

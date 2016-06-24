@@ -18,16 +18,7 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     params.library.on('enqueue', function(song) {
-      console.log('hellllo');
-      console.log('sqc',this.get('songQueueCollection'));
-      console.log('sq BEFORE', this.get('songQueue'));
-      console.log('the song to add: ', song);
-      console.log('this is this: ', this);
-
-      this.get('songQueue').add(song); //add to songQueueCollection...still not playing...fix in collection?
-      console.log('sq AFTER', this.get('songQueue')); // appears to be adding!
-      this.get('songQueue').playFirst();
-      console.log(this.get('songQueue').at(0));
+      this.get('songQueue').add(song); 
     }, this);
   }
 

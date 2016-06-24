@@ -67,7 +67,7 @@ describe('SongQueueCollection', function() {
     });
   });
 
-  describe('playFirst', function() {
+  xdescribe('playFirst', function() {
     it('plays the first song in the queue', function() {
       sinon.spy(SongModel.prototype, 'play');
       var songQueue = new SongQueueCollection(songData1);
